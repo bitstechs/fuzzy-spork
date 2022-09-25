@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 var i = 0,
 minimizedWidth = new Array,
 minimizedHeight = new Array,
@@ -252,6 +258,7 @@ function startupFunctions() {
 	startTime();
 	set_style_from_cookie();
 	setBackgroundImage();
+	loadCookies();
 }
 
 

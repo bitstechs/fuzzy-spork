@@ -187,7 +187,19 @@
 	$('#watermark').css('color', newbgcolor);
 	$('#abranding a').css('color', newbgcolor);
 	$('button').css('border-color', newbgcolor);
-
+	document.cookie = "color=" + color;
 });
+var color = loadCookies();
+
+function loadCookies(){
+    var cookie_string = document.cookie ;
+    if (cookie_string.length != 0) {
+        var cookie_value = cookie_string.match (
+                    '(^|;)[\s]*' +
+                    "color" +
+                    '=([^;]*)' );
+        return decodeURIComponent ( cookie_value[2] ) ;
+    }
+}
 </script>
 </html>
