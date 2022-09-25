@@ -192,7 +192,7 @@
 
 function loadColors() {
 	if(document.cookie.indexOf("colorcook") > 0 ){
-    let color = getCookie("colorcook");
+    let color = getCookies("colorcook");
 	$(winhead).css('background', color);
 	$('#taskbar').css('background', color);
 	$('#appsmenu').css('background', color);
