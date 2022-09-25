@@ -178,16 +178,16 @@
 </body>
 <script>
 	$('#colorpicker').on('change', function() {
-    var newbgcolor = this.value;
+    var cpcolor = this.value;
 	const winhead = document.getElementsByClassName('windowHeader');
-    $(winhead).css('background', newbgcolor);
-	$('#taskbar').css('background', newbgcolor);
-	$('#appsmenu').css('background', newbgcolor);
-	$('#htmltemp').css('color', newbgcolor);
-	$('#watermark').css('color', newbgcolor);
-	$('#abranding a').css('color', newbgcolor);
-	$('button').css('border-color', newbgcolor);
-	document.cookie = "color=" + color;
+    $(winhead).css('background', cpcolor);
+	$('#taskbar').css('background', cpcolor);
+	$('#appsmenu').css('background', cpcolor);
+	$('#htmltemp').css('color', cpcolor);
+	$('#watermark').css('color', cpcolor);
+	$('#abranding a').css('color', cpcolor);
+	$('button').css('border-color', cpcolor);
+	document.cookie = "color=" + cpcolor;
 });
 var color = loadCookies();
 
