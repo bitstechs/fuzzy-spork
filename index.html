@@ -189,7 +189,20 @@
 	$('button').css('border-color', cpcolor);
 	document.cookie = "colorcook=" + cpcolor;
 });
-
+function getCookies(cname) {
+	let name = cname + "=";
+	let ca = document.cookie.split(';');
+	for(let i = 0; i < ca.length; i++) {
+	  let c = ca[i];
+	  while (c.charAt(0) == ' ') {
+		c = c.substring(1);
+	  }
+	  if (c.indexOf(name) == 0) {
+		return c.substring(name.length, c.length);
+	  }
+	}
+	return "";
+  }
 function loadColors() {
 	if(document.cookie.indexOf("colorcook") > 0 ){
     let color = getCookies("colorcook");
@@ -200,8 +213,9 @@ function loadColors() {
 	$('#watermark').css('color', color);
 	$('#abranding a').css('color', color);
 	$('button').css('border-color', color);
-}
+    }
 };
+
 loadColors();
 </script>
 </html>
