@@ -254,24 +254,12 @@ function get_cookie ( cookie_name )
 	return '' ;
 }
 
-var color = loadCookies();
-
-function loadCookies(){
-    var cookie_string = document.cookie ;
-    if (cookie_string.length != 0) {
-        var cookie_value = cookie_string.match (
-                    '(^|;)[\s]*' +
-                    "color" +
-                    '=([^;]*)' );
-        return decodeURIComponent ( cookie_value[2] ) ;
-    }
-}
 
 function startupFunctions() {
 	startTime();
 	set_style_from_cookie();
 	setBackgroundImage();
-	loadCookies();
+	loadColors();
 }
 
 

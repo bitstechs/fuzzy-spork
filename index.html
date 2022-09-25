@@ -187,7 +187,21 @@
 	$('#watermark').css('color', cpcolor);
 	$('#abranding a').css('color', cpcolor);
 	$('button').css('border-color', cpcolor);
-	document.cookie = "color=" + cpcolor;
+	document.cookie = "colorcook=" + cpcolor;
 });
+
+function loadColors() {
+	if(document.cookie.indexOf("colorcook") > 0 ){
+    let color = getCookie("colorcook");
+	$(winhead).css('background', color);
+	$('#taskbar').css('background', color);
+	$('#appsmenu').css('background', color);
+	$('#htmltemp').css('color', color);
+	$('#watermark').css('color', color);
+	$('#abranding a').css('color', color);
+	$('button').css('border-color', color);
+}else{
+}
+};
 </script>
 </html>
