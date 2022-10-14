@@ -44,8 +44,9 @@
       width: 0%;
       right: 0;
       bottom: 0;
+      left:0;
       z-index: 2;
-      border-top-right-radius: 0px;
+      border-radius: 0px;
   }
   
   #appsmenu.opened {
@@ -159,7 +160,9 @@
       overflow: hidden;
   }
   
-  
+  .window .windowHeader > span {
+    border-radius: 0px;
+}
   
   
   

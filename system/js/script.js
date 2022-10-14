@@ -1,7 +1,25 @@
+//Apps
 
-
-
-
+//Calculator 
+function dis(val)
+         {
+             document.getElementById("result").value+=val
+         }
+           
+         //function that evaluates the digit and return result
+         function solve()
+         {
+             let x = document.getElementById("result").value
+             let y = eval(x)
+             document.getElementById("result").value = y
+         }
+           
+         //function that clear the display
+         function clr()
+         {
+             document.getElementById("result").value = ""
+         }
+// Next App
 
 
 
@@ -15,7 +33,7 @@ id;
 
 //jQuery
 setTimeout(function(){
-    $("#startup").fadeOut(400);
+    $("#startup").fadeOut(200);
 	document.getElementById("startupsnd").play(); 
 }, 2000)
   
@@ -29,26 +47,23 @@ function startTime(){
     var date = new Date();
     var h = date.getHours(); 
     var m = date.getMinutes(); 
-	var d = date.getDate();
-	var mo = date.getMonth() + 1;
-	var y = date.getFullYear();
    // var s = date.getSeconds(); 
-    var session = "AM";
+    //var session = "AM";
     
     if(h == 0){
         h = 12;
     }
     
-    if(h > 12){
-        h = h - 12;
-        session = "PM";
-    }
+    //if(h > 12){
+      //  h = h - 12;
+        //session = "PM";
+    //}
     
     h = (h < 10) ? "0" + h : h;
     m = (m < 10) ? "0" + m : m;
     //s = (s < 10) ? "0" + s : s;
-    
-    var time = y + "-" + mo + "-" + d + " - " + h + ":" + m + " " + session;
+
+    var time = h + ":" + m + " " //+ session;
     document.getElementById("time").innerText = time;
     document.getElementById("time").textContent = time;
     setTimeout(startTime, 1000);
@@ -57,8 +72,23 @@ function checkTime(i) {
     if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
     return i;
 }
+function startDate(){
+    var date = new Date();
+	var d = date.getDate();
+	var m = date.getMonth() + 1;
+	var y = date.getFullYear();
+
+	d = (d < 10) ? "0" + d : d;
+    m = (m < 10) ? "0" + m : m;
+    
+    var date = y + "-" + m + "-" + d
+    document.getElementById("date").innerText = date;
+    document.getElementById("date").textContent = date;
+    setTimeout(startDate, 1000);
+}
 function appstoggle() {
 	document.getElementById("appsmenu").classList.toggle("opened");
+	document.getElementById("appsPanel").classList.toggle("opened");
 }
 document.oncontextmenu = rightClick;
   
@@ -110,6 +140,14 @@ x[i].style.display = "none";
 }
 document.getElementById(tabName).style.display = "block";
 }
+function openTabb(tabName) {
+	var i;
+	var x = document.getElementsByClassName("tabb");
+	for (i = 0; i < x.length; i++) {
+	x[i].style.display = "none";
+	}
+	document.getElementById(tabName).style.display = "block";
+	}
 
 $(document).ready(function(){
 	$("#appsmenu").click(function(){
@@ -119,50 +157,21 @@ $(document).ready(function(){
   
 	});
   });			
+  
 
- // var changeBG = function(event) {
- //   var output = document.getElementById('desktop');
- //   output.style.background= "url("+URL.createObjectURL(event.target.files[0])+")";
- // };
- function setBackgroundImage()
- {
-	 var url = document.getElementById('bgchanger').value;
-	 document.getElementsByTagName('desktop')[0].style.backgroundImage = "url("+URL.createObjectURL(event.target.files[0])+")";
-	 setCookie('userbg', url, 30);
- }
- 
+  var changeBG = function(event) {
+    var output = document.getElementsByClassName('desktop')[0];
+    output.style.background= "url("+URL.createObjectURL(event.target.files[0])+")";
+  };
+
   var resetBG = function(event) {
-	var output = document.getElementById('desktop');
+	var output = document.getElementsByClassName('desktop')[0];
 	output.style.background= "";
   }
-  
-  function enableWatermark() {
-	// Get the checkbox
-	var checkBox = document.getElementById("waterCheck");
-	// Get the output text
-	var text = document.getElementById("watermark");
-	// If the checkbox is checked, display the output text
-	if (checkBox.checked == true){
-	  text.style.display = "inline-block";
-	} else {
-	  text.style.display = "none";
-	}
-  }
-  function invertColors() {
-	// Get the checkbox
-	var checkBox = document.getElementById("colorCheck");
-	// Get the output text
-	var color = document.getElementById("colorop");
-	// If the checkbox is checked, display the output text
-	if (checkBox.checked == true){
-	  color.style.filter = "invert(1)";
-	} else {
-	  color.style.filter = "";
-	}
-  }
   function localBG() {
-	document.getElementById("desktop").style.background = "url('system/img/bg.png')";
+	document.getElementsByClassName('desktop')[0].style.background = "url('https://bing.biturl.top/?resolution=3840&format=image&index=0&mkt=en-CA')";
 }
+
 
   function defaultColors() {
 	// Get the checkbox
@@ -189,13 +198,33 @@ $(document).ready(function(){
 	$('button').css('border-color', '');
   }
 
+  function centeredApps() {
+	// Get the checkbox
+	var checkBox = document.getElementById("centrdAppsChk");
+	// Get the output text
+	var appsBtn = document.getElementById("appsPanel");
+	var appsmenu = document.getElementById("appsmenu");
+	// If the checkbox is checked, display the output text
+	if (checkBox.checked == true){
+	  appsBtn.style.left = "unset";
+	  appsBtn.style.position = "unset";
+	  appsmenu.style.margin = "0 auto"
+	  appsmenu.style.left = "0"
+	  
+	} else {
+		appsBtn.style.left = "";
+		appsBtn.style.position = "";
+		appsmenu.style.margin = ""
+		appsmenu.style.left = ""
+	}
+  }
 
-
+//THEMES COOKIES
 // *** TO BE CUSTOMISED ***
 
 var style_cookie_name = "ostheme" ;
 var style_cookie_duration = 30 ;
-var style_domain = "broimluna.github.io" ;
+var style_domain = "localhost" ;
 
 // *** END OF CUSTOMISABLE SECTION ***
 // You do not need to customise anything below this line
@@ -215,18 +244,18 @@ function switch_style ( css_title )
         link_tag[i].disabled = false ;
       }
     }
-    set_cookie( style_cookie_name, css_title,
+    set_cookie_style( style_cookie_name, css_title,
       style_cookie_duration, style_domain );
   }
 }
 function set_style_from_cookie()
 {
-  var css_title = get_cookie( style_cookie_name );
+  var css_title = get_cookie_style( style_cookie_name );
   if (css_title.length) {
     switch_style( css_title );
   }
 }
-function set_cookie ( cookie_name, cookie_value,
+function set_cookie_style ( cookie_name, cookie_value,
     lifespan_in_days, valid_domain )
 {
     // https://www.thesitewizard.com/javascripts/cookies.shtml
@@ -238,7 +267,7 @@ function set_cookie ( cookie_name, cookie_value,
                        24 * lifespan_in_days +
                        "; path=/" + domain_string ;
 }
-function get_cookie ( cookie_name )
+function get_cookie_style ( cookie_name )
 {
     // https://www.thesitewizard.com/javascripts/cookies.shtml
 	var cookie_string = document.cookie ;
@@ -254,25 +283,16 @@ function get_cookie ( cookie_name )
 	return '' ;
 }
 
-function getCookies(cname) {
-	let name = cname + "=";
-	let ca = document.cookie.split(';');
-	for(let i = 0; i < ca.length; i++) {
-	  let c = ca[i];
-	  while (c.charAt(0) == ' ') {
-		c = c.substring(1);
-	  }
-	  if (c.indexOf(name) == 0) {
-		return c.substring(name.length, c.length);
-	  }
-	}
-	return "";
-  }
+
+// Cookies 
+
+
+
 
 function startupFunctions() {
 	startTime();
+	startDate();
 	set_style_from_cookie();
-	setBackgroundImage();
 }
 
 

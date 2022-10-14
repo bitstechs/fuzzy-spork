@@ -1,0 +1,10 @@
+desktop {
+    backgrounda: url("../../img/bg.png");
+}
+
+#startup {
+    display: none;
+}
+#watermark {
+display: inline-block;
+}
