@@ -563,19 +563,19 @@ border-radius: 4px;
 	position: absolute;
 	height: 42px;
 	border-top: 1px solid transparent;
-	bottom: 5px;
-    width: 99%;
-    border-radius: 6px;
-    margin: 0 auto;
+	bottom: 10px;
+	width: 99%;
+	border-radius: 6px;
+	margin: 0 auto;
 	left: 0;
-    z-index: 2000;
+	z-index: 2000;
 	right: 0;
 	background: #d6d6d69f;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    transition: 0.5s;	
-    text-align: center;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	transition: 0.5s;
+	text-align: center;
 }
 #taskbar.dark {
     background: #0000009f;
@@ -621,7 +621,7 @@ border-radius: 4px;
 #watermark {
     position: absolute;
     display: none;
-    bottom: 50px;
+    bottom: 65px;
     right: 20px;
     font-weight: bold;
     font-size: 18px;

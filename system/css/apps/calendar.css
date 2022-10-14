@@ -1,6 +1,12 @@
 .day, .day:before, .day:after {
   -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
   }
+
+  @media screen and (max-width:1024px) {
+    .header {
+        width: 350px !important;
+    }
+  }
   
   #calendar {
     -webkit-transform: translate3d(0, 0, 0);
