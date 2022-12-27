@@ -1,17 +1,45 @@
-@media screen and (max-width:1024px) {
-    #themesrow, .themestext, .themeshr {
+@media screen and (max-width:1359px) {
+    #themesrow, .themestext, .themeshr, #app6, #sliders {
         display: none !important;
     }
+
+    #appSearch {
+        display: block;
+        padding: 4.2% 8% !important;
+    }
+
+    #window10 {
+        left: 50%;
+        top: 50%;
+        margin-left: unset;
+        margin-top: unset;
+    }
+    .mobileSetRow {
+        display: block;
+    }
+    .setside {
+        display: none;
+    }
   }
-  
+
+#window11 {
+    height: unset !important;
+    width: unset !important;
+    z-index: 9999999999 !important;
+}
+  #window9 .wincontent {
+    max-width: none; 
+    max-height: none;
+}
+  .ui-icon-gripsmall-diagonal-se {
+    display: none;
+}
+.winheadimg {
+    margin: 2px 3px;
+}
+
   /* Context menu */
 .context-menu {
-    position: absolute;
-    text-align: center;
-    background: transparent;
-    border: 3px solid transparent;
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
     -webkit-box-shadow: 0px 0px 0px 0px #000000;
     box-shadow: 0px 0px 0px 0px #000000;
     border-radius: 0px;
@@ -32,30 +60,45 @@
 }
 /* end of context menu*/
   .appsHtxt {
-      text-align: unset !important;
       margin: 15px 10px;
       font-size: 28px;
-      color: white;
   }
+  .taskbarPanel {
+    left: calc(0% + 0px);
+}
+  .curtheme::before {
+    content: 'Metro';
+   }
   #appsmenu {
       position: fixed;
      margin: unset !important;
      height: 100%;
       width: 0%;
       right: 0;
-      bottom: 0;
-      left:0;
+      bottom: 0 !important;
+      left:0 !important;
       z-index: 2;
-      border-radius: 0px;
+      border-radius: 0px !important;
   }
   
   #appsmenu.opened {
       width: 100% !important;
       height: 100% !important;
   }
-  
+
+  #quidgets {
+    display: none;
+}
+ 
+#appsmenu.quidgets > hr.quivertical {
+    display: none;
+}
+#appsmenu.quidgets {
+    width: 0px;
+}
   #appicons {
       left: 5px;
+      right: 0;
       height: 80%;
   }
   #appicons a {
@@ -63,7 +106,7 @@
       display: inline-table;
       cursor: pointer;
       padding: 10px 15px;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Segoe UI;
       text-decoration: none;
       color: white;
       background: #00000040;
@@ -80,11 +123,49 @@
   #icons {
       display: none;
   }
+  #window9 {
+    left: unset !important;
+    top: unset !important;
+    margin-left: unset !important;
+    margin-top: unset !important;
+}
+#usrinpt {
+    width: 88%;
+}
   
+.appsHtxt {
+    display: block;
+}
   
-
-  
-  
+#appicons {
+    top: calc(0% + 45px) !important;
+    height: 68% !important;
+}
+.appSearchBR, .appSearchHR {
+    display: block !important;
+}
+#appSearch {
+    display: block !important;
+}
+#taskSearch {
+    display: none !important;
+}
+#settingsUP {
+    bottom: 0;
+    top: unset !important;
+    right: 0;
+}
+#userProfile {
+    bottom: 0;
+    right: 0;
+    top: unset !important;
+}
+.uPhr {
+    display: block !important;
+}
+.uPhrBtm {
+  display: none;
+}
   
   
   .window {
@@ -140,7 +221,7 @@
     padding-left: 0px !important;
     float: unset;
     margin: unset;
-    line-height: unset;
+    line-height: 32px;
     position: absolute;
     font-size: 15px;
 }
@@ -163,14 +244,24 @@
   .window .windowHeader > span {
     border-radius: 0px;
 }
-  
-  
-  
-  
-  
-  
-  
-  
+#appicons {
+    top: calc(0% + 45px);
+    height: 74%;
+}
+.appSearchBR, .appSearchHR {
+    display: block;
+}
+#appSearch {
+    display: block;
+    padding: 1.2% 2%;   
+}
+#taskSearch {
+    display: none;
+}
+
+#appsmenuExpand, #quidgets {
+    display: none;
+}
   
   
   

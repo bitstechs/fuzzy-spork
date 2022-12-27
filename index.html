@@ -1,46 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<script src="system/js/dependencies/jquery.js"></script>
+	<script src="system/js/dependencies/jquery-ui.js"></script>
+	<script src="system/js/dependencies/jquery.terminal.js"></script>
+	<script src="system/js/dependencies/FileSaver.js"></script>
+	<script src="system/js/desktop.js"></script>
+	<script src="system/js/apps.js"></script>
+	<script src="system/js/flags.js"></script>
+	<script src="system/js/taskbar.js"></script>
+	<script src="system/js/cookies.js"></script>
+	<link rel="stylesheet" type="text/css" href="system/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="system/css/dependencies/fontawesome.css" />
+	<link rel="stylesheet" type="text/css" href="system/css/apps.css" />
+	<link rel="stylesheet" type="text/css" href="system/css/themes/default.css" />
+	<link href="system/css/dependencies/notepad/layout.css" rel="stylesheet" type="text/css">
+	<link href="system/css/dependencies/notepad/notestyle.css" rel="stylesheet" type="text/css">
+	<link href="system/css/dependencies/terminal.css" rel="stylesheet" type="text/css"/>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="system/css/themes/metro.css" media="only screen and (max-width: 1359px)">
+	<link rel="alternate stylesheet 2" type="text/css" title="theme2" href="system/css/themes/metro.css">
+	<link rel="alternate stylesheet 3" type="text/css" title="theme3" href="system/css/themes/classic.css">
 	<meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	<script src="system/js/script.js"></script>	
-	<link rel="stylesheet" type="text/css" href="system/css/style.css" />
-	<link rel="stylesheet" href="system/css/themes/metro.css" media="only screen and (max-width: 1023px)">
-	<link rel="alternate stylesheet 1" type="text/css" title="theme1" href="system/css/themes/classic.css">
-	<link rel="alternate stylesheet 2" type="text/css" title="theme2" href="system/css/themes/metro.css">
-	<title>Avalanche Web Desktop</title>
+	<title>AvalancheOS</title>
 	<audio id="startupsnd" src="system/snd/startup.wav" hidden></audio>
 </head>
 
-<body onload="startupFunctions()">
+<body id="body" onload="startupFunctions()">
 
 	<div id="desktop" class="desktop">
-		
-		   <div class="window closed" data-html="true" icon="<img src='system/img/icons/paint-32x32.png' width='32' height='32'>" data-title="Paint">
+
+		   <div class="window closed" data-html="true" taskicon="<img src='system/img/icons/paint-32x32.png' class='taskpanelimg' width='32' height='32'>" headicon="<img src='system/img/icons/paint-32x32.png' class='winheadimg' width='28' height='28'>" data-title="Paint">
 			<iframe width="100%" height="100%" src="apps/jspaint/index.html"></iframe>
 			</div>
-	
-			<div class="window closed" data-html="true" icon="<img src='system/img/icons/notepad-32x32.png' width='32' height='32'>" data-title="Notepad">
-			<iframe width="100%" height="100%" src="apps/notepad/index.html"></iframe>
+
+			<div class="window closed" data-html="true" taskicon="<img src='system/img/icons/notepad-32x32.png' class='taskpanelimg' width='32' height='32'>" headicon="<img src='system/img/icons/notepad-32x32.png' class='winheadimg' width='28' height='28'>" data-title="Notepad">
+				<div id="app">
+				<div class="menus" touch-action="none"><div class="menu-container"><input name="notefilename" placeholder="Enter a filename." type="text" maxlength="512" id="notefilename" class="textinput"/><button onclick="downloadNote();">Save</button></div></div>
+				<div id="document" class="inset-shallow">
+						<textarea id="document-textarea"></textarea>
+					</div>
+				</div>
+				<div id="print-helper"></div>
 			</div>
-	
-			<div class="window closed" data-html="true" icon="<img src='system/img/icons/minesweeper-32x32.png' width='32' height='32'>" data-title="Minesweeper">
+
+			<div class="window closed" data-html="true" taskicon="<img src='system/img/icons/minesweeper-32x32.png' class='taskpanelimg' width='32' height='32'>" headicon="<img src='system/img/icons/minesweeper-32x32.png' class='winheadimg' width='28' height='28'>" data-title="Minesweeper">
 				<iframe width="100%" height="100%" src="apps/minesweeper/index.html"></iframe>
 			</div>
-										
-			<div class="window closed" data-html="true" icon="<img src='system/img/icons/cal-32x32.png' width='32' height='32'>" data-title="Calendar">
-				<div id="calendar"></div>
-				<script src="system/js/apps/moment.min.js"></script>
-				<script src="system/js/apps/calendar.js"></script>
-				<link href="system/css/apps/calendar.css" rel="stylesheet" type="text/css">
+
+			<div class="window closed" data-html="true" taskicon="<img src='system/img/icons/cal-32x32.png' class='taskpanelimg' width='32' height='32'>" headicon="<img src='system/img/icons/cal-32x32.png' class='winheadimg' width='28' height='28'>" data-title="Calendar">
+				<div id="calendar">
+					<div id="calendar_header">
+					<i class="icon-chevron-left"></i>
+					<h1></h1>
+					<i class="icon-chevron-right"></i>
+					</div>
+					<div id="calendar_weekdays"></div>
+					<div id="calendar_content"></div>
+					</div>
 				</div>
-	
-			<div class="window closed" data-html="true" icon="<img src='system/img/icons/calc-32x32.png' width='32' height='32'>" data-title="Calculator">
+
+			<div class="window closed" data-html="true" taskicon="<img src='system/img/icons/calc-32x32.png' class='taskpanelimg' width='32' height='32'>" headicon="<img src='system/img/icons/calc-32x32.png' class='winheadimg' width='28' height='28'>" data-title="Calculator">
 				<table class="calctable" border="1">
 					<tr>
 					   <td colspan="3"><input class="calctext" type="text" id="result"/></td>
@@ -74,22 +97,21 @@
 					   <td><input class="calcbutton" type="button" value="=" onclick="solve()"/> </td>
 					   <td><input class="calcbutton" type="button" value="*" onclick="dis('*')"/> </td>
 					</tr>
-				 </table>			
+				 </table>
 			</div>
-	
-			<div class="window closed" data-html="true" icon="<img src='system/img/icons/bronze-32x32.png' width='32' height='32'>" data-title="Bronze Browser">
-				<link rel="stylesheet" href="system/css/apps/bronze.css">
+
+			<div class="window closed" data-html="true" taskicon="<img src='system/img/icons/bronze-32x32.png' class='taskpanelimg bronzeReversed' width='32' height='32'>" headicon="<img src='system/img/icons/bronze-32x32.png' class='winheadimg bronzeReversed' width='28' height='28'>" data-title="Bronze Browser">
 				<div id="bronzeIcons">
-					<a target="bronzeFrame" id="bronzeHome" href="system/appsassets/bronze/embed.html"><img src="system/img/apps/bronze/home.png"></a>
-					<a id="bronzeBack" href="javascript:history.back();"><img src="system/img/apps/bronze/back.png"></a>
+					<a target="bronzeFrame" id="bronzeHome" href="system/appsassets/bronze/embed.html"><img id="itminvert" src="system/img/apps/bronze/home.png"></a>
+					<a target="bronzeFrame" id="bronzeBack" href="javascript:history.back();"><img id="itminvert"src="system/img/apps/bronze/back.png"></a>
 					</div>
 			<div id="bronzeTabs">
-				<button id="button" onclick="openTabb('Tab 1')">Tab 1</button>
-				<button id="button" onclick="openTabb('Tab 2')">Tab 2</button>
-				<button id="button" onclick="openTabb('Tab 3')">Tab 3</button>
-				<button id="button" onclick="openTabb('Tab 4')">Tab 4</button>
-				<button id="button" onclick="openTabb('Tab 5')">Tab 5</button>
-				<button id="button" onclick="openTabb('Tab 6')">Tab 6</button>
+				<button id="bButton" onclick="openTabb('Tab 1')">Tab 1</button>
+				<button id="bButton" onclick="openTabb('Tab 2')">Tab 2</button>
+				<button id="bButton" onclick="openTabb('Tab 3')">Tab 3</button>
+				<button id="bButton" onclick="openTabb('Tab 4')">Tab 4</button>
+				<button id="bButton" onclick="openTabb('Tab 5')">Tab 5</button>
+				<button id="bButton" onclick="openTabb('Tab 6')">Tab 6</button>
 			</div>
 				<div id="Tab 1" class="tabb">
 					<embed src="system/appsassets/bronze/embed.html" frameborder="0" id="Bronze" style="border: none;" class="bronzeFrame" name="bronzeFrame" scrolling="yes" marginheight="0px" marginwidth="0px" width="100%" height="100%" allowfullscreen="">
@@ -108,28 +130,35 @@
 				</div>
 				<div id="Tab 6" class="tabb" style="display:none;text-align: center;">
 					<embed src="system/appsassets/bronze/embed.html" frameborder="0" id="Bronze" style="border: none;" class="bronzeFrame" name="bronzeFrame" scrolling="yes" marginheight="0px" marginwidth="0px" width="100%" height="100%" allowfullscreen="">
-				</div>			
-			</div>
-	
-			<div class="window closed" data-html="true" icon="<img src='system/img/icons/hyperos-32x32.png' width='32' height='32'>" data-title="HyperOS">
-				<a target="hos" href="apps/hyperos/index.html">Home</a>
-				<iframe name="hos" width="100%" height="100%" src="apps/hyperos/index.html"></iframe>
-			</div>
-			<div class="window closed" data-html="true" icon="<img src='system/img/icons/settings-32x32.png' width='32' height='32'>" data-title="Control Panel">
-				<div id="tabsettings">
-					<button id="settingsbutton" onclick="openTab('Customization')">Customization</button>
-					<button id="settingsbutton" onclick="openTab('About')">About</button>
 				</div>
+			</div>
+
+			<div class="window closed" data-html="true" taskicon="<img src='system/img/icons/VMBox-32x32.png' class='taskpanelimg' width='32' height='32'>" headicon="<img src='system/img/icons/VMBox-32x32.png' class='winheadimg' width='28' height='28'>" data-title="VMBox">
+				<a target="hos" href="apps/VMBox/index.html">Home</a>
+				<iframe name="hos" width="100%" height="100%" src="apps/VMBox/index.html"></iframe>
+			</div>
+			<div class="window closed" data-html="true" taskicon="<img src='system/img/icons/settings-32x32.png' class='taskpanelimg' width='32' height='32'>" headicon="<img src='system/img/icons/settings-32x32.png' class='winheadimg' width='28' height='28'>" data-title="Control Panel">
+
+				<div id="settingsrow" class="themes">
+					<button id="settingsbutton" onclick="openTab('Customization')">Customization</button>
+					<button id="settingsbutton" onclick="openTab('UserProfile')">User Profile</button>
+					<button id="settingsbutton" class="creditsbtn" onclick="openTab('Credits')">Credits</button>
+					<button id="settingsbutton" onclick="openTab('About')">About</button>
+					<button id="settingsbutton" class="flagsbtn" onclick="openTab('Flags')">Flags</button>
+				</div>
+				
 					<hr id="settingshr">
-		
+
 			<div id="Customization" class="tab">
-				<h1 id="settingsh1" class="themestext">Themes</h1>
-				<div id="themesrow">
+
+				<h1 id="settingsh1" class="themes">Themes</h1>
+				<div id="themesrow" class="themes">
 					<button id="settingsbutton" onclick="switch_style('default');return false;" name="Default Theme" value="Default Theme">Default</button>
-					<button id="settingsbutton" onclick="switch_style('theme1');return false;" name="Theme 1" value="Theme 1">Classic</button>
+					<button id="settingsbutton" onclick="switch_style('theme3');return false;" name="Theme 3" value="Theme 3">Classic</button>
 					<button id="settingsbutton" onclick="switch_style('theme2');return false;" name="Theme 2" value="Theme 2">Metro</button>
 				</div>
-					<hr id="settingshr" class="themeshr">
+
+					<hr id="settingshr" class="themes">
 					<h1 id="settingsh1">Background</h1>
 					<input id="inputbtn" class="wppicker" type="file" accept="image/*" onchange="changeBG(event)">
 					<br>
@@ -142,98 +171,237 @@
 					<br>
 					<hr id="settingshr">
 					<h1 id="settingsh1">Colors</h1>
-					<input type="color" id="colorpicker"><a>Choose your color</a></input>
+					<div id="sliders" style="display: block;margin-top: 15px;margin-left: 4px;">
+					<div id="colouredSlider" class="slider"></div><span id="colorslTxt" style="position: absolute; visibility: hidden;">Colors</span>
+					</div>
 					<br>
-					<br>
-					<input type="checkbox" id="dmToggle">Enable Dark Mode</input>
-					<br>
-					<br>
+					<input type="checkbox" id="dmToggle" class="checkBox"><a id="dmToggle">Enable Dark Mode</a></input>
+					<br id="dmToggle">
+					<br id="dmToggle">
 					<button id="defaultColor" onclick="defaultColors()">Set colors to default</button>
 					<br>
-					<br>
 					<hr id="settingshr">
-					<h1 id="settingsh1" class="tskbrtab">Taskbar</h1>
-					<input type="checkbox" onclick="centeredApps()" id="centrdAppsChk"><a class="centrdAppsTxt">Set Apps button to center</a></input>
 				    </div>
+
+					<div id="UserProfile" class="tab" style="display:none;overflow: hidden;">
+
+						<h1>User Profile</h1>
+						<hr>
+						<div id="userProfile" style="margin: -10px 0px; bottom :unset;right :unset;right :unset;">
+						  <div>
+							<img border="0" alt="" src="system/img/pfp.png" width="32" height="32"><br><a id="userProfileSetTxt">User</a>
+						  </div>
+						</div>						
+						<br>
+						<br>
+						<input id="usrsetinpt" name="usrsetinpt" type="text" maxlength="10" placeholder="Enter your username..." required="required" class="textinput">
+						<br>
+						<br>
+						<button id="usrSetBtn" onclick="setUsrSet()">Apply</button>			
+						<br>
+						<br>			
+						<button onclick="DisableALDA()" id="ALDAC"><a class="ALDACtxt">Enable the Log in window on startup</a></button>
+						<hr>
+					</div>
+
+
+					<div id="Flags" class="tab" style="display:none;text-align: center;overflow: hidden;">
+						<h1 id="settingsh1">Developer Options</h1>
+						<hr id="settingshr">
+						<form name="searchpage" onSubmit="return enableFlag()">
+						<input type="text" size='20' name="keyword" placeholder="Enter a flag." class="textinput"><br><p style="font-size: 11px;">Theses flags are experimental<br>and may not be stable.</p>
+						<button value="Apply">Apply</button>
+						<br>
+						<select style="display: none !important" name="and_or" size='0'></select><br>
+						</form>
+						<button href="index.html">Reset flags</button>
+					</div>
+
+					<div id="Credits" class="tab" style="display:none;text-align: center;overflow: hidden;">
+                     <h1>Credits</h1>
+					 <br>
+					 <a href="https://broimluna.github.io/" target="_blank" class="credtxt">Luna</a><a> - Main Developer</a>
+					 <br>
+					 <br>
+					 <a href="https://aph6002.neocities.org/" target="_blank" class="credtxt">APH6000</a><a> & </a><a href="https://dalekondemand.neocities.org/" target="_blank" class="credtxt">Dalek</a><a> - Developed in part the Media Player and Bronze</a>
+					 <br>
+					 <br>
+					 <a href="https://www.w3schools.com/" target="_blank" class="credtxt">W3Schools</a><a> - Learn lots of things there</a>
+					 <br>
+					 <br>	
+					 <a href="https://isaiahodhner.io/" target="_blank" class="credtxt">Isaiah Odhner</a><a> - Developed Paint and Minesweeper</a>
+					 <br>
+					 <br>
+                     <a href="https://www.browserling.com/" target="_blank" class="credtxt">Browserling</a><a> - Base for the Windows 7 VM in <a class="openWindow" data-id="6" style="text-decoration: underline;cursor:pointer;">VMBox</a></a>					</div>
+					
+
 				<div id="About" class="tab" style="display:none;text-align: center;overflow: hidden;">
-		
+
 					<div id="abranding">
-					<img src="system/img/sys_logo.png" height="56" width="108"></img>
+					<img ondblclick="easegg();" src="system/img/sys_logo.png" height="56" width="56"></img>
 					<br>
 					<a>AvalancheOS</a>
 					</div>
-		
 					<hr id="settingshr">
-					<a>Version X (Build: 6400)</a>
-					<br>		
-					<hr id="settingshr">
-					<a>broimluna - 2022</a>
+					<a class="abttxt">April 2023 Release (Build: 13000)</a>
 					<br>
-					<p>Based on 'Windows' Template from <a target="blank" id="htmltemp" href="https://html5-templates.com">html5-templates.com</a></p>
+					<br>
+					<a class="curthemea">Current theme: <a class="curtheme"></a></a>
+                    <br>
+					<hr id="settingshr">
+					<a class="abttxt">broimluna - 2023</a>
+					<br>
+					<p class="abttxt">Based on 'Windows' Template from <a target="blank" id="htmltemp" class="abttxt" href="https://html5-templates.com">html5-templates.com</a></p>
 				</div>
-		
+
 				<div class="bottomBtns">
-					<a class="btmbtninvert" target="_blank" href="https://github.com/broimluna"><img src="system/img/icons/github.png" height="32" width="32" title="Follow my GitHub!"></a>
+					<a target="_blank" href="https://github.com/broimluna"><img id="itminvert" src="system/img/icons/github.png" height="32" width="32" title="Follow my GitHub!"></a>
 				  </div>
 			</div>
 
-			
-			
-		
-		<div id="taskbar">
-			<a id="appsPanel" onclick="appstoggle()"><img src='system/img/sys_logo.png' width='62' height='36'></a>
-			<a id="time"></a>
-			<a id="date"></a>
+
+	<div class="window closed" data-html="true" taskicon="<img src='system/img/icons/media-player.png' class='taskpanelimg' width='32' height='32'>" headicon="<img src='system/img/icons/media-player.png' class='winheadimg' width='28' height='28'>" data-title="Media Player">
+				<div class="wplist"><ul style="list-style: none">
+	            <li style="margin-left: 20px !important; margin-top: 10px !important; line-height: 135%;">
+		        <ul id="list">
+
+
+	        <div id="pages">
+			<div id="mpBACK" class="mydivshow">
+			<h1>Select a Category:</h1>
+			 <button id="mpNETR" class="catsel">Internet Radio</button>
+			 <br>
+			 <br>
+			 <button id="mpCURL" class="catsel">Custom URL</button>
+			</div>
+
+			<div id="mpNETR" class="mydivhide" style="display:none;">
+			<h1>Internet Radio:</h1>
+	        <li><a id="button" onclick="cs_change_music('https://s2.radio.co/s2b2b68744/listen');">BadRadio</a></li>
+			<br>
+	        <li><a id="button" onclick="cs_change_music('https://streamer.radio.co/sd7b28e5f3/listen');">Mambo Radio</a></li>
+			<br>
+	        <li><a id="button" onclick="cs_change_music('https://radio.plaza.one/ogg');">Nightwave Plaza</a></li>
+	        <br><a id="mpBACK" class="catsel">Back</a><br><br>
+	        <strong>&copy; 2022 BadRadio, Mambo Radio, Nightwave Plaza, This music is streamed live.</strong>
+	         <br><br>
+			</div>
+			<div id="mpCURL" class="mydivhide" style="display:none;">
+			<h1>Custom URL:</h1>
+		    <input name="musicURL" type="text" maxlength="512" id="musicURL" class="textinput"/><button class="search" onclick="cs_change_music(musicURL.value);">Play!</button>
+		    <br><a id="mpBACK" class="catsel">Back</a><br><br>
+		    <br><br>
+		    </div>
+
 		</div>
-		
+
+	</ul>
+	  </li>
+	</ul></div>
+	<audio style="width:100%;height:28px;bottom:0;position:absolute;" id="my-audio" controls loop></audio>
+</div>
+
+<div class="window closed" data-html="true" taskicon="<img src='system/img/icons/term-32x32.png' class='taskpanelimg termReversed' width='32' height='32'>" headicon="<img src='system/img/icons/term-32x32.png' class='winheadimg termReversed' width='28' height='28'>" data-title="Terminal">
+	<div id="jsterminal">
+	</div>
+</div>
+
+
+
+
+		<div id="taskbar">
+			<a id="appsPanel" class="appsMenuToggle" onclick="appstoggle()"><img src='system/img/sys_logo.png' width='36' height='36'></a>
+			<input type="text" id="taskSearch" onclick="document.getElementById('appsmenu').classList.add('opened');" onkeyup="taskSearch()" placeholder="Press here to search for an app" title="Press here to search for an app" class="textinput">
+			<div id="time"></div>
+			<div id="date"></div>
+		</div>
+
+	<div id="loginContainer">
+		<div class="window" data-html="true" taskicon="<img src='system/img/pfp.png' class='taskpanelimg' width='32' height='32'>" headicon="<img src='system/img/pfp.png' class='winheadimg' width='28' height='28'>" data-title="Login">
+			<input id="usrinpt" name="usrinpt" type="text" maxlength="10" placeholder="Enter your username..." required="required" class="textinput">
+			<br>
+			<br>
+			<button id="loginBtn" onclick="loginUsr()">Log in</button>
+			<button onclick="defaultLog()">Cancel</button>
+			<button onclick="LogNeverAsk()">Don't Ask Again</button>
+		  </div>
+	</div>
+
+	<div class="window closed" data-html="true" headicon="<img src='system/img/icons/info.png' class='winheadimg' width='28' height='28'>" data-title="AvalancheOS">
+		<a class="alertxt"></a>
+		<br>
+		<br>
+		<br>
+		<button class="confirmButton">OK</button>
+	</div>
+
 		<div id="icons">
 		  <center>
-			<a class="openWindow" data-id="0"><img border="0" alt="" src="system/img/icons/paint-32x32.png" width="32" height="32"><br>Paint</a>  
-			<a class="openWindow" data-id="1"><img border="0" alt="" src="system/img/icons/notepad-32x32.png" width="32" height="32"><br>Notepad</a>
-			<a class="openWindow" data-id="3"><img border="0" alt="" src="system/img/icons/cal-32x32.png" width="32" height="32"><br>Calendar</a>
-			<a class="openWindow" data-id="5"><img border="0" alt="" src="system/img/icons/bronze-32x32.png" width="32" height="32"><br>Bronze<br>Browser</a>
-		  </center>      
+			<a class="openWindowDblClick" data-id="0"><img border="0" alt="" src="system/img/icons/paint-32x32.png" width="32" height="32"><br>Paint</a>
+			<a class="openWindowDblClick" data-id="1"><img border="0" alt="" src="system/img/icons/notepad-32x32.png" width="32" height="32"><br>Notepad</a>
+			<a class="openWindowDblClick" data-id="3"><img border="0" alt="" src="system/img/icons/cal-32x32.png" width="32" height="32"><br>Calendar</a>
+			<a class="openWindowDblClick" data-id="5"><img border="0" alt="" src="system/img/icons/bronze-32x32.png" width="32" height="32"><br>Bronze<br>Browser</a>
+		  </center>
 		</div>
-		
-		
+
+
 		<div id="appsmenu">
-			<h1 id="appsHtxt">Apps</h1>
+			<h1 class="appsHtxt">Start</h1>
 				<div id="appicons">
 					<center>
-						<a class="openWindow" data-id="0"><img border="0" alt="" src="system/img/icons/paint-32x32.png" width="32" height="32"><br>Paint</a>
-						<a class="openWindow" data-id="1"><img border="0" alt="" src="system/img/icons/notepad-32x32.png" width="32" height="32"><br>Notepad</a>
-						<a class="openWindow" data-id="2"><img border="0" alt="" src="system/img/icons/minesweeper-32x32.png" width="32" height="32"><br>Minesweeper</a>
-						<a class="openWindow" data-id="3"><img border="0" alt="" src="system/img/icons/cal-32x32.png" width="32" height="32"><br>Calendar</a>
-						<a class="openWindow" data-id="4"><img border="0" alt="" src="system/img/icons/calc-32x32.png" width="32" height="32"><br>Calculator</a>
-						<a class="openWindow" data-id="5"><img border="0" alt="" src="system/img/icons/bronze-32x32.png" width="32" height="32"><br>Bronze Browser</a>
-						<a class="openWindow" data-id="6"><img border="0" alt="" src="system/img/icons/hyperos-32x32.png" width="32" height="32"><br>HyperOS</a>
-						<a class="openWindow" data-id="7"><img border="0" alt="" src="system/img/icons/settings-32x32.png" width="32" height="32"><br>Control Panel</a>
+						<li><a class="openWindow" data-id="0"><img border="0" alt="" src="system/img/icons/paint-32x32.png" width="32" height="32"><br>Paint</a></li>
+						<li><a class="openWindow" data-id="1"><img border="0" alt="" src="system/img/icons/notepad-32x32.png" width="32" height="32"><br>Notepad</a></li>
+						<li><a class="openWindow" data-id="2"><img border="0" alt="" src="system/img/icons/minesweeper-32x32.png" width="32" height="32"><br>Minesweeper</a></li>
+						<li><a class="openWindow" data-id="3"><img border="0" alt="" src="system/img/icons/cal-32x32.png" width="32" height="32"><br>Calendar</a></li>
+						<li><a class="openWindow" data-id="4"><img border="0" alt="" src="system/img/icons/calc-32x32.png" width="32" height="32"><br>Calculator</a></li>
+						<li><a class="openWindow" data-id="5"><img border="0" alt="" src="system/img/icons/bronze-32x32.png" width="32" height="32" class="bronzeReversed"><br>Bronze Browser</a></li>
+						<li><a class="openWindow" data-id="6"><img border="0" alt="" src="system/img/icons/VMBox-32x32.png" width="32" height="32"><br>VMBox</a></li>
+						<li><a class="openWindow" data-id="8"><img border="0" alt="" src="system/img/icons/media-player.png" width="32" height="32"><br>Media Player</a></li>
+						<li><a class="openWindow" data-id="9"><img border="0" alt="" src="system/img/icons/term-32x32.png" width="32" height="32" class="termReversed"><br>Terminal</a></li>
 
-
-						
 					</center>
 				</div>
-			
+				<div id="userProfile">
+					<div><img border="0" alt="" src="system/img/pfp.png" width="32" height="32"><br><a id="userProfileTxt">User</a></div>
+					<a id="settingsUP" class="openWindow" data-id="7"><img border="0" alt="" src="system/img/icons/settings-32x32.png" width="32" height="32"><br></a>
+					<hr class="uPhrBtm">
+				</div>
+				<a id="appsmenuExpand" onclick="quidgetsToggle();"><img id="itminvert" border="0" alt="" src="system/img/icons/expandicon.png" width="32" height="32"><br></a>
+				<hr class="quivertical">
+				<div id="quidgets">
+					<h1>Welcome back, <a id="quidgetsUsrTxt">User</a>!</h1>
+					<h2>It is currently <span id="quidate"></span></h2>
+					<h2><span id="quiweather"></span></h2>
+					<hr>
+					<div id="quinews">
+					<script src="https://rss.bloople.net/?url=https%3A%2F%2Fwww.theverge.com%2Frss%2Findex.xml&showtitle=false&type=js"></script>
+				   </div>		
+				   <hr> 
+					<h2>
+					  Powered by <a href="https://openweathermap.org/" target="_blank">OpenWeatherMap</a>
+					</h2>
+			   </div>
+		   </div>
 		</div>
 
 		<div id="contextMenu" class="context-menu" style="display: none; left: 140px; top: 421px;">
 			<ul>
 				<li class="openWindow" data-id="7">Open Control Panel</li>
-				<li onclick="window.location.reload(true);">Reload Avalanche</li>
+				<li onclick="window.location.reload(true);">Reload AvalancheOS</li>
 				<li onclick="activatefull(document.documentElement);">Activate Fullscreen</li>
 				<li onclick="deactivatefull();">Deactivate Fullscreen</li>
-				
+
 
 			</ul>
 			</div>
 
 
-			  
+
 
 			<div id="startup">
 				<div class="startuplogo">
-					<img src="system/img/sys_logo.png" width="250px" alt="" />
-				</div>
+					<img src="system/img/sys_logo.png" width="180px" alt="" />
+				 </div>
 					<div class="startupload">
 					<img src="system/img/loading.gif" width="150px" alt="" />
 				</div>
@@ -245,29 +413,64 @@
 	</a>
 </body>
 <script>
-	$('#colorpicker').on('change', function() {
-    var cpcolor = this.value;
-	const winhead = document.getElementsByClassName('windowHeader');
-    $(winhead).css('background', cpcolor);
-	$('#taskbar').css('background', cpcolor);
-	$('#appsmenu').css('background', cpcolor);
-	$('#htmltemp').css('color', cpcolor);
-	$('#watermark').css('color', cpcolor);
-	$('#abranding a').css('color', cpcolor);
-	$('button').css('border-color', cpcolor);
-	$('#button').css('border-color', cpcolor);
-});
-
 let darkToggle = document.querySelector('#dmToggle');
 darkToggle.addEventListener('change', ()=> {
+	let root = document.documentElement;
 	document.getElementById("time").classList.toggle("dark");
 	document.getElementById("date").classList.toggle("dark");
 	document.getElementById("taskbar").classList.toggle("dark");
 	document.getElementById("appsmenu").classList.toggle("dark");
 	document.getElementById("appicons").classList.toggle("dark");
-	document.getElementById("appsHtxt").classList.toggle("dark");
 	document.getElementById("icons").classList.toggle("dark");
-
+	document.getElementById("settingsUP").classList.toggle("dark");
+	document.getElementById("userProfile").classList.toggle("dark");
+	root.classList.toggle("dark")
+	$("#userProfile hr, #appsmenu hr, #taskSearch").toggleClass("dark");
+	$("h1, strong, .centrdAppsTxt, #abranding a, #abranding img, a#dmToggle, .abttxt, span.winclose, span, #appicons a, .day, .wppicker, .textinput, .curthemea, .curtheme, a, .rstflgs, .ALDACtxt, #quidgets, #quinews").toggleClass("dark");
+	$("button, #button, #notebutton").toggleClass("dark");
+	$("#document-textarea, #calendar_content, #calendar_weekdays").toggleClass("dark");
+	$(".taskbarPanel, .bronzeReversed, .termReversed, #appsPanel img").toggleClass("dark");
+	$(".context-menu, .context-menu ul li").toggleClass("dark");
+	$(".window, #itminvert, .windowHeader").toggleClass("dark");
 });
+
+//color slider
+var hsl1 = 0;
+var hsl2 = 50;
+
+var colourslider = $("#colouredSlider");
+colourslider.slider({
+  max: 360,
+  slide: setColour,
+  change: setColour
+});
+
+var bwslider = $("#bwSlider");
+bwslider.slider({
+  max: 100,
+  value: 50,
+  slide: setColour,
+  change: setColour
+});
+
+function setColour() {
+  let root = document.documentElement;
+  hsl1 = colourslider.slider("option", "value");
+  hsl2 = bwslider.slider("option", "value");
+  root.style.setProperty('--wppickercolor', "hsl(" + hsl1 + ", 100%, " + "50%)", "important");
+  $('.windowHeader, #appsmenu, #taskbar, #quidgets').css('background', "hsl(" + hsl1 + ", 100%, " + "50%)");
+  $('#htmltemp, #watermark, #abranding a, .checkBox, .credtxt').css('color', "hsl(" + hsl1 + ", 100%, " + "50%");
+  $('.checkBox').css('color', "hsl(" + hsl1 + ", 100%, " + "50%)");
+  $('#button, button, .calcbutton, .calctext, .textinput, .rstflgs, #notebutton, #document-textarea').css('border-color', "hsl(" + hsl1 + ", 100%, " + "50%)");
+  $("#colouredSlider .ui-state-default").css("background-color", "hsl(" + hsl1 + ", 100%, 50%)");
+}
+//end of it
+
+$(".catsel").click(function() {
+		var id = $(this).attr("id");
+		$("#pages div").css("display", "none");
+		$("#pages div#" + id + "").css("display", "block");
+	});
+
 </script>
 </html>

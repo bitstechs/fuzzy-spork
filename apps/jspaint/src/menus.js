@@ -106,7 +106,7 @@ window.menus = {
 			item: "E&xit",
 			// shortcut: "Alt+F4", // closes browser window
 			action: ()=> {
-				close();
+				closeWindwow(0);
 			},
 			description: "Quits Paint.",
 		}
