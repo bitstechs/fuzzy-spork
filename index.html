@@ -10,12 +10,12 @@
 	<script src="system/js/flags.js"></script>
 	<script src="system/js/taskbar.js"></script>
 	<script src="system/js/cookies.js"></script>
+	<script src="system/js/screensaver.js"></script>
 	<link rel="stylesheet" type="text/css" href="system/css/style.css" />
+	<link rel="stylesheet" type="text/css" href="system/css/themes/dev.css" />
 	<link rel="stylesheet" type="text/css" href="system/css/dependencies/fontawesome.css" />
 	<link rel="stylesheet" type="text/css" href="system/css/apps.css" />
 	<link rel="stylesheet" type="text/css" href="system/css/themes/default.css" />
-	<link href="system/css/dependencies/notepad/layout.css" rel="stylesheet" type="text/css">
-	<link href="system/css/dependencies/notepad/notestyle.css" rel="stylesheet" type="text/css">
 	<link href="system/css/dependencies/terminal.css" rel="stylesheet" type="text/css"/>
 	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" href="system/css/themes/metro.css" media="only screen and (max-width: 1359px)">
@@ -39,7 +39,7 @@
 
 			<div class="window closed" data-html="true" taskicon="<img src='system/img/icons/notepad-32x32.png' class='taskpanelimg' width='32' height='32'>" headicon="<img src='system/img/icons/notepad-32x32.png' class='winheadimg' width='28' height='28'>" data-title="Notepad">
 				<div id="app">
-				<div class="menus" touch-action="none"><div class="menu-container"><input name="notefilename" placeholder="Enter a filename." type="text" maxlength="512" id="notefilename" class="textinput"/><button onclick="downloadNote();">Save</button></div></div>
+				<div class="menus" touch-action="none"><div class="menu-container"><input name="notefilename" placeholder="Enter a filename." type="text" maxlength="512" id="notefilename" class="textinput"/><button id="notebutton" onclick="downloadNote();">Save</button></div></div>
 				<div id="document" class="inset-shallow">
 						<textarea id="document-textarea"></textarea>
 					</div>
@@ -175,12 +175,14 @@
 					<div id="colouredSlider" class="slider"></div><span id="colorslTxt" style="position: absolute; visibility: hidden;">Colors</span>
 					</div>
 					<br>
-					<input type="checkbox" id="dmToggle" class="checkBox"><a id="dmToggle">Enable Dark Mode</a></input>
+					<input type="checkbox" id="dmToggle" class="checkBox" onclick="darkModeToggleCook()"><a id="dmToggle">Enable Dark Mode</a></input>
 					<br id="dmToggle">
 					<br id="dmToggle">
-					<button id="defaultColor" onclick="defaultColors()">Set colors to default</button>
+					<button id="defaultColor" onclick="defaultColors();defaultColorsCookies();">Set colors to default</button>
 					<br>
 					<hr id="settingshr">
+					<h1 id="settingsh1">Taskbar</h1>
+					<input onclick="enableSearchIcon();TBIconToggleCook();" type="checkbox" id="enableTSIcon" class="checkBox"><a>Set Search Box to Icon</a></input>
 				    </div>
 
 					<div id="UserProfile" class="tab" style="display:none;overflow: hidden;">
@@ -243,7 +245,7 @@
 					<a>AvalancheOS</a>
 					</div>
 					<hr id="settingshr">
-					<a class="abttxt">April 2023 Release (Build: 13000)</a>
+					<a class="abttxt">April 2023 (NUX2 Branch)</a>
 					<br>
 					<br>
 					<a class="curthemea">Current theme: <a class="curtheme"></a></a>
@@ -277,13 +279,13 @@
 
 			<div id="mpNETR" class="mydivhide" style="display:none;">
 			<h1>Internet Radio:</h1>
-	        <li><a id="button" onclick="cs_change_music('https://s2.radio.co/s2b2b68744/listen');">BadRadio</a></li>
+	        <li><button onclick="cs_change_music('https://s2.radio.co/s2b2b68744/listen');">BadRadio</button></li>
 			<br>
-	        <li><a id="button" onclick="cs_change_music('https://streamer.radio.co/sd7b28e5f3/listen');">Mambo Radio</a></li>
+	        <li><button onclick="cs_change_music('https://streamer.radio.co/sd7b28e5f3/listen');">Mambo Radio</button></li>
 			<br>
-	        <li><a id="button" onclick="cs_change_music('https://radio.plaza.one/ogg');">Nightwave Plaza</a></li>
+	        <li><button onclick="cs_change_music('https://radio.plaza.one/ogg');">Nightwave Plaza</button></li>
 	        <br><a id="mpBACK" class="catsel">Back</a><br><br>
-	        <strong>&copy; 2022 BadRadio, Mambo Radio, Nightwave Plaza, This music is streamed live.</strong>
+	        <strong>&copy; 2023 BadRadio, Mambo Radio, Nightwave Plaza, This music is streamed live.</strong>
 	         <br><br>
 			</div>
 			<div id="mpCURL" class="mydivhide" style="display:none;">
@@ -311,9 +313,10 @@
 
 		<div id="taskbar">
 			<a id="appsPanel" class="appsMenuToggle" onclick="appstoggle()"><img src='system/img/sys_logo.png' width='36' height='36'></a>
-			<input type="text" id="taskSearch" onclick="document.getElementById('appsmenu').classList.add('opened');" onkeyup="taskSearch()" placeholder="Press here to search for an app" title="Press here to search for an app" class="textinput">
-			<div id="time"></div>
-			<div id="date"></div>
+			<input type="text" id="taskSearch" onclick="document.getElementById('appsmenu').classList.add('opened');" onkeyup="taskSearch()" placeholder="Press here to search for an app" title="Press here to search for an app">
+			<div class="timedate">
+			<div class="timedatetext"></div>
+		</div>
 		</div>
 
 	<div id="loginContainer">
@@ -416,8 +419,6 @@
 let darkToggle = document.querySelector('#dmToggle');
 darkToggle.addEventListener('change', ()=> {
 	let root = document.documentElement;
-	document.getElementById("time").classList.toggle("dark");
-	document.getElementById("date").classList.toggle("dark");
 	document.getElementById("taskbar").classList.toggle("dark");
 	document.getElementById("appsmenu").classList.toggle("dark");
 	document.getElementById("appicons").classList.toggle("dark");
@@ -429,7 +430,7 @@ darkToggle.addEventListener('change', ()=> {
 	$("h1, strong, .centrdAppsTxt, #abranding a, #abranding img, a#dmToggle, .abttxt, span.winclose, span, #appicons a, .day, .wppicker, .textinput, .curthemea, .curtheme, a, .rstflgs, .ALDACtxt, #quidgets, #quinews").toggleClass("dark");
 	$("button, #button, #notebutton").toggleClass("dark");
 	$("#document-textarea, #calendar_content, #calendar_weekdays").toggleClass("dark");
-	$(".taskbarPanel, .bronzeReversed, .termReversed, #appsPanel img").toggleClass("dark");
+	$(".taskbarPanel, .bronzeReversed, .termReversed, #appsPanel img, .timedate").toggleClass("dark");
 	$(".context-menu, .context-menu ul li").toggleClass("dark");
 	$(".window, #itminvert, .windowHeader").toggleClass("dark");
 });
@@ -457,6 +458,7 @@ function setColour() {
   let root = document.documentElement;
   hsl1 = colourslider.slider("option", "value");
   hsl2 = bwslider.slider("option", "value");
+  document.cookie="AvaColorTheme=" + hsl1;
   root.style.setProperty('--wppickercolor', "hsl(" + hsl1 + ", 100%, " + "50%)", "important");
   $('.windowHeader, #appsmenu, #taskbar, #quidgets').css('background', "hsl(" + hsl1 + ", 100%, " + "50%)");
   $('#htmltemp, #watermark, #abranding a, .checkBox, .credtxt').css('color', "hsl(" + hsl1 + ", 100%, " + "50%");

@@ -330,6 +330,19 @@ function downloadNote() {
 	saveAs(blob, (file_name || default_file_name_for_saving) + ".txt");
   }
 
+  var openFile = function(event) {
+    var input = event.target;
+  
+    var reader = new FileReader();
+    reader.onload = function() {
+      var text = reader.result;
+      var node = document.getElementById('document-textarea');
+      node.innerText = text;
+      console.log(reader.result.substring(0, 200));
+    };
+    reader.readAsText(input.files[0]);
+  };
+
 //Media Player
 function cs_change_music(music)
 {
@@ -440,6 +453,9 @@ function openTab(tabName) {
             appsmenu.style.left = ""
         }
     
+    }
+    function enableSearchIcon() {
+        document.getElementById("taskSearch").classList.toggle("icon");
     }
     function easegg() {
         $(".creditsbtn").css('display', 'inline')

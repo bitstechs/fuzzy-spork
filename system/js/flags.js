@@ -40,9 +40,6 @@
 		  if (paRameter == 'DisableTheming') {
 			$("<style type='text/css'> .themes {  display:none !important; }</style>").appendTo("div");
 			}
-			if (paRameter == 'ForceEnableSearchBar') {
-				$("<style type='text/css'> #taskSearch {  display:inline !important; }</style>").appendTo("div");
-				}
 
 		  if (startup == 'no') {
 			$('#startup').css('display','none');

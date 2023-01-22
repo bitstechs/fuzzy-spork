@@ -1,6 +1,5 @@
-#taskFeaturePanel {
-    position: absolute;
-    left: 0;
+#taskSearch {
+    height: calc(0% + 22.4px);
 }
 
 #appsmenu {
@@ -32,8 +31,11 @@
     background: transparent;
 }
 
-a, h1, p, span, ul, li, #appicons a, #appsHtxt, #icons, #time, #date {
+a, h1, p, span, ul, li, #appicons a, #appsHtxt, #icons, .timedatetext {
     color: white;
+}
+.timedatetext {
+    filter: invert(1);
 }
 .ALDACtxt {
     color: black;
@@ -80,4 +82,8 @@ filter: invert(0) !important;
 }
 #app0i, #app1i {
     display: block;
+}
+.timedate {
+    background: transparent !important;
+    border-color: transparent !important;
 }

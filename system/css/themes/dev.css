@@ -12,8 +12,46 @@ display: inline-block;
 .curtheme::before {
     content: 'Dev';
    }
-
-.taskSearch {
-    display: block;
+/*   #taskSearch {
+    background: transparent !important;
+    padding: 8px 0.1% 9px 32px !important;
+    margin: 0px -40px !important;
+    position: relative !important;
+    top: -11.5px !important;
+    height: calc(0% + 22px);
+    width: calc(0% + 0px) !important;
+    left: calc(0% + 38px) !important;
+    border-radius: 4px !important;
+    color: white;
+    border-color: transparent;
+    outline: none !important;
+    background-image: url("../../img/icons/tbSearch.png") !important;
+    background-size: 15px !important;
+    background-repeat: no-repeat !important;
+    background-position: 10px center !important;
+    transition: 0.2s;
 }
+#taskSearch:focus {
+    background: #00000075 !important;
+    background-image: url("../../img/icons/tbSearch.png") !important;
+    background-size: 15px !important;
+    background-repeat: no-repeat !important;
+    background-position: 10px center !important;
+    width: calc(0% + 184px) !important;
+    border-color: black;
+    cursor: text !important;
+
+}
+
+#taskSearch:hover {
+    background: #00000050 !important;
+    background-image: url("../../img/icons/tbSearch.png") !important;
+    background-size: 15px !important;
+    background-repeat: no-repeat !important;
+    background-position: 10px center !important;
+    transition: 0.5s;
+    border-color: black;
+    cursor: pointer;
+    border-radius: 4px;
+    }*/
 

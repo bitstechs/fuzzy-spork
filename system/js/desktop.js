@@ -96,10 +96,12 @@ window.alert = function(msg){
 })
 
 function startupFunctions() {
-	startTime();
 	startDate();
 	set_style_from_cookie();
 	checkLogCookie();
+	checkDMCookie();
+	checkTSIconCookie();
+	setColourCookie();
 	quiloadWeather();
 	quiloadDate();
 }

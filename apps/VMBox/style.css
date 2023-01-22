@@ -2,6 +2,13 @@ body {
   background-color: transparent;
   overflow-x: hidden;
   overflow-y: hidden;
+  font-family: 'Segoe UI';
+}
+
+@font-face {
+  font-family: Segoe UI;
+  src: url(../../system/fonts/segoeuisl.ttf);
+  font-weight: bolder;
 }
 
 h1 {
@@ -71,5 +78,6 @@ p {
   background: rgba(0, 0, 0, 0.250);
 border-radius: 5px;
 }
+
 
 

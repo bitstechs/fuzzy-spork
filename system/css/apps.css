@@ -78,18 +78,19 @@ font-size: large;
 font-family: Segoe UI;
 }
 #notebutton {
-border: 2px solid #ffffff;
-border-radius: 5px;
-font-size: 15px;
-padding: 1px 4px;
-background: #CCC;
-font-weight: bold;
-cursor: pointer;
-height: 17px;
-margin: 1px 6px;
-text-decoration: none;
-color: black;
+  border: 2px solid;
+  border-color: black;
+  border-radius: 5px;
+  font-size: 15px;
+  background: #CCC;
+  font-weight: bold;
+  cursor: pointer;
+  height: 30px;
+  margin: 2px 2px;
+  font-family: Segoe UI;
 }
+
+
 /*Bronze*/
 #bronzeTop {
   margin-top: 6px !important; 

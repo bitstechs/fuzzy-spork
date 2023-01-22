@@ -94,3 +94,68 @@ function setCookie(cname,cvalue,exdays) {
 		
 	}
   }
+  function checkDMCookie() {
+	if (document.cookie.indexOf("AvaDM=true") != -1)  {
+		let root = document.documentElement;
+		root.classList.toggle("dark")
+		document.getElementById("taskbar").classList.toggle("dark");
+	document.getElementById("appsmenu").classList.toggle("dark");
+		$("#userProfile hr, #appsmenu hr, #taskSearch").toggleClass("dark");
+	$("h1, strong, .centrdAppsTxt, #abranding a, #abranding img, a#dmToggle, .abttxt, span.winclose, span, #appicons a, #appicons, .day, .wppicker, .textinput, .curthemea, .curtheme, a, .rstflgs, .ALDACtxt, #quidgets, #quinews").toggleClass("dark");
+	$("button, #button, #notebutton").toggleClass("dark");
+	$("#document-textarea, #calendar_content, #calendar_weekdays").toggleClass("dark");
+	$(".taskbarPanel, .bronzeReversed, .termReversed, #appsPanel img, .timedate").toggleClass("dark");
+	$(".context-menu, .context-menu ul li").toggleClass("dark");
+	$(".window, #itminvert, .windowHeader").toggleClass("dark");
+	document.getElementById("dmToggle").checked = true;
+		} else {
+        void(0);		
+	}
+  }
+  function checkTSIconCookie() {
+	if (document.cookie.indexOf("AvaTSIcon=true") != -1)  {
+        document.getElementById("taskSearch").classList.add("icon");
+	document.getElementById("enableTSIcon").checked = true;
+		} else {
+        void(0);		
+	}
+  }
+  function EnableDMCookie() {
+    document.cookie="AvaTSIcon=true";
+    alert("AvaTSIcon=true")
+}
+
+function darkModeToggleCook() {
+	var toggle = document.getElementById("dmToggle")
+
+	if (toggle.checked == true){
+		document.cookie="AvaDM=true";
+	}
+	if (toggle.checked == false){
+		document.cookie="AvaDM=false";
+	}
+}
+function TBIconToggleCook() {
+	var toggle = document.getElementById("enableTSIcon")
+
+	if (toggle.checked == true){
+		document.cookie="AvaTSIcon=true";
+	}
+	if (toggle.checked == false){
+		document.cookie="AvaTSIcon=false";
+	}
+}
+function setColourCookie() {
+	let root = document.documentElement;
+	var hsl1 = getCookie("AvaColorTheme");
+	root.style.setProperty('--wppickercolor', "hsl(" + hsl1 + ", 100%, " + "50%)", "important");
+	$('.windowHeader, #appsmenu, #taskbar, #quidgets').css('background', "hsl(" + hsl1 + ", 100%, " + "50%)");
+	$('#htmltemp, #watermark, #abranding a, .checkBox, .credtxt').css('color', "hsl(" + hsl1 + ", 100%, " + "50%");
+	$('.checkBox').css('color', "hsl(" + hsl1 + ", 100%, " + "50%)");
+	$('#button, button, .calcbutton, .calctext, .textinput, .rstflgs, #notebutton, #document-textarea').css('border-color', "hsl(" + hsl1 + ", 100%, " + "50%)");
+	$("#colouredSlider .ui-state-default").css("background-color", "hsl(" + hsl1 + ", 100%, 50%)");
+  }
+  
+  function defaultColorsCookies() {
+  document.cookie="AvaColorTheme=default";
+  };

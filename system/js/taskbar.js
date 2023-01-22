@@ -47,47 +47,27 @@ function quidgetsToggle() {
 	document.getElementById("appsmenu").classList.toggle("quidgets");
 }
 
-function startTime(){
-    var date = new Date();
-    var h = date.getHours();
-    var m = date.getMinutes();
-   // var s = date.getSeconds();
-    //var session = "AM";
-
-    if(h == 0){
-        h = 12;
-    }
-
-    //if(h > 12){
-      //  h = h - 12;
-        //session = "PM";
-    //}
-
-    h = (h < 10) ? "0" + h : h;
-    m = (m < 10) ? "0" + m : m;
-    //s = (s < 10) ? "0" + s : s;
-
-    var time = h + ":" + m + " " //+ session;
-    document.getElementById("time").innerText = time;
-    document.getElementById("time").textContent = time;
-    setTimeout(startTime, 1000);
-}
-function checkTime(i) {
-    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
 function startDate(){
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"];
     var date = new Date();
 	var d = date.getDate();
-	var m = date.getMonth() + 1;
+	var mOld = date.getMonth() + 1;
+  var m = monthNames[date.getMonth() + 1];
 	var y = date.getFullYear();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
 
+  hour = (hour < 10) ? "0" + hour : hour;
+  minute = (minute < 10) ? "0" + minute : minute;
 	d = (d < 10) ? "0" + d : d;
-    m = (m < 10) ? "0" + m : m;
+  m = (m < 10) ? "0" + m : m;
 
-    var date = m + "/" + d + "/" + y
-    document.getElementById("date").innerText = date;
-    document.getElementById("date").textContent = date;
+    var date = hour + ":" + minute + " • " + m + " " + d + ", " + y
+    document.getElementsByClassName("timedatetext")[0].innerText = date;
+    document.getElementsByClassName("timedatetext")[0].textContent = date;
     setTimeout(startDate, 1000);
 }
+
+
 
