@@ -1,0 +1,25 @@
+#taskbar {
+    width: auto;
+    border-radius: 0px;
+    bottom: 0;
+}
+#appsmenu {
+    margin: unset !important;
+}
+.fullSizeWindow {
+    top: 0 !important;
+}
+
+#taskSearch {
+    display: none;
+}
+.centrdAppsTxt, #centrdAppsChk, .betweenapptitlencentrd, #centrdAppsChkSetup {
+    display: none;
+}
+.fullSizeWindow .wincontent {
+    height: 85% !important;
+}
+
+.currenttheme::before {
+    content: "Classic";
+}
