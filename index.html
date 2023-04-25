@@ -133,7 +133,9 @@
 					<h1 id="settingsh1" class="tskbrtab">Taskbar</h1>
 					<input type="checkbox" onclick="centeredApps()" id="centrdAppsChk" class="checkBox"><a class="centrdAppsTxt">Set the taskbar to the left</a></input>
 					<br class="betweenapptitlencentrd">
-					<input type="checkbox" onclick="addAppTitleTaskbar()" id="AppTitleOnTaskBarPanelChk" class="checkBox"><a class="addAppTitleTaskbarTxt">Add app title to taskbar icons.</a></input>
+					<input type="checkbox" onclick="addAppTitleTaskbar()" id="AppTitleOnTaskBarPanelChk" class="checkBox"><a class="addAppTitleTaskbarTxt">Apply app titles to taskbar icons.</a></input>
+					<br class="betweenapptitlentsksrchbox">
+					<input type="checkbox" onclick="tskSearchBox()" id="taskbarSearchBoxchk" class="checkBox"><a class="taskbarSearchBoxTxt">Enable search on the taskbar.</a></input>
 				    </div>
 
 					<div id="UserProfile" data-title="User Profile" class="tab" style="display:none;overflow: hidden;">
@@ -228,7 +230,12 @@
 			
 		<div id="taskbar">
 			<a id="appsBtn" onclick="appstoggle()"><img src='system/img/icons/apps.png' width='46' height='46'></a>
+			<a id="appsBtn" class="widgetstask" onclick="quickweanewstoggle()"><img src='system/img/icons/widgets.png' width='46' height='46'></a>
+			<a class="tasktimedate" title="Click here to see the date and time." onclick="timedatetoggle();"></a>
+			<input type="text" id="taskSearch" class="tasksearch" onclick="document.getElementById('appsmenu').classList.toggle('openedtop');" onkeyup="taskSearch()" placeholder="Click here to search for an app" title="Click here to search for an app">
+
 		</div>
+
 		<div class="quickfeatures">
 			<a class="timedatetext" title="Click here to see the date and time." onclick="timedatetoggle();"></a>
 			<a class="quickweanewsap" title="Click here to access weather and news." onclick="quickweanewstoggle();"></a>
@@ -259,6 +266,8 @@
 				<a id="settingsUP" class="openWindow" data-id="8"><img border="0" alt="" src="system/img/icons/settings.png" width="32" height="32"></a>
 			</div>
 		</div>
+
+		<a id="watermark"></a>
 
 		<div id="quickweanews">
 			<h1>Welcome back!</h1>
@@ -315,7 +324,6 @@
 
 
 	</div>
-	<a id="watermark"></a>
 
 	<div id="startup">
 		<div><img id="startuplogo" src="system/img/systemlogo.png"></div>	
@@ -348,6 +356,7 @@
 	$('#htmltemp').css('color', cpcolor);
 	$('#watermark').css('color', cpcolor);
 	$('#abranding a').css('color', cpcolor);
+	$('input').css('border-color', cpcolor);
 	$('button').css('border-color', cpcolor);
 	$('.checkBox').css('color', cpcolor);
 	document.cookie = "mOSColor=" + cpcolor;
@@ -367,6 +376,7 @@ $('#colorpickersetup').on('change', function() {
 	$('#abranding a').css('color', cpcolor);
 	$('button').css('border-color', cpcolor);
 	$('.checkBox').css('color', cpcolor);
+	$('input').css('border-color', cpcolor);
 	document.cookie = "mOSColor=" + cpcolor;
 	localStorage.setItem("mOSColor", cpcolor)
 })

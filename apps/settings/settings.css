@@ -39,4 +39,8 @@
     display: block;
 }
 
-
+@media screen and (max-device-height: 768px) {
+    #themesrow {
+       display: none !important;
+    }  
+}

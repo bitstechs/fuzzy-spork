@@ -1,5 +1,5 @@
-var kernelver = "4";
-var buildnumb = "7200";
+var kernelver = "5.0";
+var buildnumb = "7450";
 var iframei = 0
 var i = 0,
 minimizedWidth = new Array,
@@ -53,6 +53,7 @@ if (/^h/.test(document.location)) {
   } else {
 	void(0);
   }
+
 
 
 
@@ -150,6 +151,7 @@ $(document).ready(function(){
 	$("#window" + (i-1)).addClass('activeWindow');
 	
 	$( ".wincontent" ).resizable();			// resizable
+	
 	$( ".window" ).draggable({ cancel: ".wincontent", iframeFix: true});	// draggable
 	
 

@@ -47,8 +47,11 @@
 }
 #taskbar {
     margin: 0 auto !important;
-    bottom: 7px !important;
-    border-radius: 5px !important;
+    bottom: 0px !important;
+    border-top-right-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
 }
 .taskbarPanel img.taskpanelimg {
     margin: 0px 0px 0px 0px !important;

@@ -151,7 +151,14 @@ function createCookie(cname,cvalue,exdays) {
 	$('#abranding a').css('color', cpcolor);
 	$('button').css('border-color', cpcolor);
 	$('.checkBox').css('color', cpcolor);
-	
+	$('input').css('border-color', cpcolor);
+  }
+  function checkTskBarSrchIconCook() {
+	if (document.cookie.indexOf("mOSSrchBoxTskbar=true") != -1 || localStorage.getItem('mOSSrchBoxTskbar') === "true")  {
+		var checkbox = document.getElementById("taskbarSearchBoxchk")
+		$(".tasksearch").css('display', 'inline');
+		checkbox.checked = true;
+	}
   }
   
   function defaultColorsCookies() {
@@ -201,6 +208,7 @@ function createCookie(cname,cvalue,exdays) {
 
   function startCookies() {
 	mOSLeftBarCookie();
+	checkTskBarSrchIconCook();
 	checkAppTitleOnTskBarCook();
 	setColorCookie();
 	CheckFTUEandUsername();

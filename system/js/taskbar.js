@@ -103,6 +103,8 @@ function startDate(){
     var date = hour + ":" + minute + " • " + m + " " + d + ", " + y
     document.getElementsByClassName("timedatetext")[0].innerText = date;
     document.getElementsByClassName("timedatetext")[0].textContent = date;
+	document.getElementsByClassName("tasktimedate")[0].innerText = date;
+    document.getElementsByClassName("tasktimedate")[0].textContent = date;
 	var quidate = hour + ":" + minute + ":" + seconds + " on " + m + " " + d + ", " + y
 	document.getElementById("quitime").innerText = quidate;
     document.getElementById("quitime").textContent = quidate;
