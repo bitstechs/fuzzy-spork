@@ -1,5 +1,5 @@
-var kernelver = "5.0";
-var buildnumb = "7450";
+var kernelver = "4.0";
+var buildnumb = "7600";
 var iframei = 0
 var i = 0,
 minimizedWidth = new Array,

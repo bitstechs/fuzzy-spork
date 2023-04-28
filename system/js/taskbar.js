@@ -173,26 +173,26 @@ function quiloadWeather() {
 	} 
 }
 }
-                weather.text(
-                    Math.round(data.main.temp) + '°C, ' + weatherstatus
+                weather.html(
+                    "<a><img src='system/img/icons/widgets.png' style='vertical-align: middle;' width='32' height='32'></img></a>" + Math.round(data.main.temp) + '°C, ' + weatherstatus
                 )
-				quiweather.text(
-                    Math.round(data.main.temp) + '°C, ' + weatherstatus
+				quiweather.html(
+                 Math.round(data.main.temp) + '°C, ' + weatherstatus
                 )
             }
         )
     }
 
     function error() {
-		weather.text('Unable to retrieve your location for weather')
-		quiweatherfull.text('Unable to retrieve your location for weather')
+		weather.html("<a><img src='system/img/icons/widgets.png' style='vertical-align: middle;' width='32' height='32'></img></a>" + 'Unable to retrieve your location for weather')
+		quiweatherfull.html('Unable to retrieve your location for weather')
 	}
 
 
     navigator.geolocation.getCurrentPosition(success, error)
 
-    weather.text('Fetching current weather...')
-	quiweather.text('fetching current weather...')
+    weather.html("<a><img src='system/img/icons/widgets.png' style='vertical-align: middle;' width='32' height='32'></img></a>" + 'Fetching current weather...')
+	quiweather.html('fetching current weather...')
 	
 }
 

@@ -282,7 +282,7 @@ iframe {
     border: 2px solid transparent;
     bottom: 2px;
     left: 3px;
-    height: 24px;
+    height: 26px;
     line-height: 23px;
     top: -2px;
     left: 2px !important;
@@ -419,6 +419,9 @@ border-radius: 4px;
     border: 2px solid rgba(0, 0, 0, 0.200);
     height: 15px;
     border-radius: 5px;
+}
+.widgetstask {
+    display: none !important;
 }
 .quickfeatures {
     background: transparent;
@@ -602,7 +605,7 @@ border-radius: 4px;
     left: -2px;
     border-radius: 0px;
     border-color: transparent;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid white !important;
     outline: none;
     /* padding: 9px 4px 9px 4px; */
     background-image: url("../../img/icons/tbSearchW.png");
@@ -617,8 +620,8 @@ border-radius: 4px;
 #taskSearch {
     padding: 8px 0.1% 9px 32px !important;
     margin: 0 auto;
-    position: absolute !important;
-    top: -2px !important;
+    position: absolute;
+    top: -2px;
     height: calc(0% + 15px);
     width: 0px;
     left: 0;
@@ -629,9 +632,9 @@ border-radius: 4px;
     background-size: 15px !important;
     background-repeat: no-repeat !important;
     background-position: 10px center !important;
-    transition: 0.2s;
+    transition: 0.5s;
     border-radius: 0;
-    border: 2px solid transparent;
+    border: 2px solid transparent !important;
     backdrop-filter: unset !important;
 }
 
@@ -639,19 +642,19 @@ border-radius: 4px;
 #taskSearch:focus {
     background-image: url("../../img/icons/tbSearchW.png") !important;
     background-size: 15px !important;
-    border: 2px solid rgba(0, 0, 0, 0.200);
+    border: 2px solid rgba(0, 0, 0, 0.200) !important;
     width: calc(0% + 180px) !important;
-    border-top: 2px solid transparent;
-    border-bottom: 2px solid transparent;
+    border-top: 2px solid transparent !important;
+    border-bottom: 2px solid transparent !important;
     background-repeat: no-repeat !important;
     background-position: 10px center !important;
 }
 #taskSearch:hover {
     background-image: url("../../img/icons/tbSearchW.png") !important;
     background-size: 15px !important;
-    border: 2px solid rgba(0, 0, 0, 0.200);
-    border-top: 2px solid transparent;
-    border-bottom: 2px solid transparent;
+    border: 2px solid rgba(0, 0, 0, 0.200) !important;
+    border-top: 2px solid transparent !important;
+    border-bottom: 2px solid transparent !important;
     background-repeat: no-repeat !important;
     background-position: 10px center !important;
 }
@@ -708,8 +711,16 @@ border-radius: 4px;
 #taskSearch.icon.dark:focus, #taskSearch.icon.dark:hover {
     filter: invert(1);
 }
+.tasksearch {
+    visibility: hidden;
+    opacity: 0;
+}
 .textinput:focus{
     outline: none;
+}
+
+.tasktimedate {
+    display: none;
 }
 
 
@@ -765,6 +776,10 @@ border-radius: 4px;
     display: none;
 }
 
+.betweenapptitlentsksrchbox, #taskbarSearchBoxchk, .taskbarSearchBoxTxt {
+    display: none;
+}
+
 .context-menu {
     position: absolute;
     text-align: center;
@@ -813,8 +828,22 @@ border-radius: 4px;
     width: 100%;
     display: none;
     position: absolute;
-    background: url(../../img/setupbg.png);
+    backdrop-filter: blur(5px);
+    background-color: transparent;
+}
 
+#firstexperiencewindow {
+    z-index: 999998;
+    height: 88%;
+    width: 88%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    top: calc(0px + 46px);
+    position: absolute;
+    background: url(../../img/setupbg.png);
+    border-radius: 10px;
+    border: 2px solid rgba(0, 0, 0, 0.200);
 }
 
 #firstexperience h1 {
@@ -927,7 +956,7 @@ border-radius: 4px;
 }
 
 #window8 .wincontent {
-    min-width: 382px;
+    min-width: 400px;
     min-height: 376px;
     }
 

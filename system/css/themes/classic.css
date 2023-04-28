@@ -6,7 +6,7 @@
 #appsmenu {
     margin: unset !important;
 }
-.fullSizeWindow {
+.window.fullSizeWindow {
     top: 0 !important;
 }
 
@@ -16,6 +16,7 @@
 .centrdAppsTxt, #centrdAppsChk, .betweenapptitlencentrd, #centrdAppsChkSetup {
     display: none;
 }
+
 
 
 .currenttheme::before {
