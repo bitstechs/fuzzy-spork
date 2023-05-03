@@ -61,15 +61,16 @@
     display: none !important;
 }
 #firstexperiencewindow {
-    z-index: 999998;
     height: 100%;
     width: 100%;
     left: 0;
     right: 0;
     top: 0;
     position: absolute;
-    background: url(../../img/setupbg.png);
     border-radius: 0px;
     border: 0px solid transparent;
+}
+.circle1, .circle2, .circle3 {
+    top: 45vh;
 }
 
